@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from '../config/api';
 
 const PollutionForm = ({ onSuccess }) => {
   const initialFormData = {
@@ -46,7 +47,7 @@ const PollutionForm = ({ onSuccess }) => {
         notes: formData.notes
       };
       
-      const response = await fetch('/api/Pollution', {
+      const response = await fetch(`${API_BASE_URL}/api/Pollution`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

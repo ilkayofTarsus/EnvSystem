@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PollutionChart from '../components/PollutionChart';
+import { API_BASE_URL } from '../config/api';
 
 const VisualizationPage = () => {
   const [pollutionData, setPollutionData] = useState([]);
@@ -14,7 +15,7 @@ const VisualizationPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/Pollution');
+        const response = await fetch(`${API_BASE_URL}/api/Pollution`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
