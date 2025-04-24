@@ -14,12 +14,12 @@ const PollutionChart = ({ data, metric, dateRange }) => {
     // Veriyi işleme
     const processData = () => {
       const sortedData = [...data].sort((a, b) => 
-        new Date(a.recordedDate) - new Date(b.recordedDate)
+        new Date(a.recordeddate) - new Date(b.recordeddate)
       );
       
       return sortedData.map(item => ({
-        date: new Date(item.recordedDate).toLocaleDateString(),
-        value: item[metric.charAt(0).toLowerCase() + metric.slice(1)],
+        date: new Date(item.recordeddate).toLocaleDateString(),
+        value: item[metric.toLowerCase()],
         location: item.location
       }));
     };
@@ -29,16 +29,16 @@ const PollutionChart = ({ data, metric, dateRange }) => {
   
   const getMetricName = () => {
     const metricMap = {
-      'AirQualityIndex': 'Air Quality Index',
-      'PM25': 'PM2.5 (μg/m³)',
-      'PM10': 'PM10 (μg/m³)',
-      'Ozone': 'Ozone (ppb)',
-      'CarbonMonoxide': 'Carbon Monoxide (ppm)',
-      'SulfurDioxide': 'Sulfur Dioxide (ppb)',
-      'NitrogenDioxide': 'Nitrogen Dioxide (ppb)'
+      'airqualityindex': 'Air Quality Index',
+      'pm25': 'PM2.5 (μg/m³)',
+      'pm10': 'PM10 (μg/m³)',
+      'ozone': 'Ozone (ppb)',
+      'carbonmonoxide': 'Carbon Monoxide (ppm)',
+      'sulfurdioxide': 'Sulfur Dioxide (ppb)',
+      'nitrogendioxide': 'Nitrogen Dioxide (ppb)'
     };
     
-    return metricMap[metric] || metric;
+    return metricMap[metric.toLowerCase()] || metric;
   };
   
   if (chartData.length === 0) {

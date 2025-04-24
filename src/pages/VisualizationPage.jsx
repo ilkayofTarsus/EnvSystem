@@ -3,18 +3,19 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PollutionChart from '../components/PollutionChart';
+import { API_BASE_URL } from '../config/api';
 
 const VisualizationPage = () => {
   const [pollutionData, setPollutionData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedMetric, setSelectedMetric] = useState('AirQualityIndex');
+  const [selectedMetric, setSelectedMetric] = useState('airqualityindex');
   const [dateRange, setDateRange] = useState('week');
   
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/Pollution');
+        const response = await fetch(`${API_BASE_URL}/api/Pollution`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -31,13 +32,13 @@ const VisualizationPage = () => {
   }, []);
   
   const metrics = [
-    { id: 'AirQualityIndex', name: 'Air Quality Index' },
-    { id: 'PM25', name: 'PM2.5' },
-    { id: 'PM10', name: 'PM10' },
-    { id: 'Ozone', name: 'Ozone' },
-    { id: 'CarbonMonoxide', name: 'Carbon Monoxide' },
-    { id: 'SulfurDioxide', name: 'Sulfur Dioxide' },
-    { id: 'NitrogenDioxide', name: 'Nitrogen Dioxide' }
+    { id: 'airqualityindex', name: 'Air Quality Index' },
+    { id: 'pm25', name: 'PM2.5' },
+    { id: 'pm10', name: 'PM10' },
+    { id: 'ozone', name: 'Ozone' },
+    { id: 'carbonmonoxide', name: 'Carbon Monoxide' },
+    { id: 'sulfurdioxide', name: 'Sulfur Dioxide' },
+    { id: 'nitrogendioxide', name: 'Nitrogen Dioxide' }
   ];
   
   return (
@@ -97,9 +98,9 @@ const VisualizationPage = () => {
           ) : (
             <div className="h-96">
               <PollutionChart 
-                data={pollutionData} 
-                metric={selectedMetric} 
-                dateRange={dateRange} 
+                data={pollutionData}
+                metric={selectedMetric}
+                dateRange={dateRange}
               />
             </div>
           )}
