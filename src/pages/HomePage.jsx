@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 
 const HomePage = () => {
   return (
+    <div className="h-screen w-screen flex items-center justify-center">
     <div className="container mx-auto px-4 min-h-screen flex flex-col">
       <Header />
       
@@ -33,6 +34,7 @@ const HomePage = () => {
       </main>
       
       <Footer />
+    </div>
     </div>
   );
 };
